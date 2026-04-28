@@ -120,7 +120,7 @@ L1 = np.array([[1,0,0],
 - Pivotisierung kann notwendig werden wenn im Laufe des Algorithmus ein Element der Hauptdiagonale zu Null wird. Ob eine Pivotisierung notwendig ist, kann durch die Determinanten der Hauptabschnittsmatrizen bestimmt werden. Wenn diese gleich null ist, muss der Algorithmus um eine Permutationsmatrix erweitert werden.
 
 ## Cholesky-Algorithmus
-Die Cholesky-Zerlegung beschreibt einen Spezialfall der LR-Zerlegung, bei der die zu zerlegende Matrix symmetrisch (notwendig) und positiv definit (hinreichend) ist. Kriterien für positive Definitheit sind:
+Die Cholesky-Zerlegung beschreibt einen Spezialfall der LR-Zerlegung, bei der die zu zerlegende Matrix symmetrisch (notwendig) und positiv definit (hinreichend) ist. Ziel ist es ein solches LGS einfacher lösbar zu machen. Kriterien für positive Definitheit sind:
 - Nur positive Eigenwerte
 - Nur positive Hauptabschnittsdeterminanten (auch Hauptminoren)
 - Alle HD-Elemente sind positiv (notwendiges, aber nicht hinreichendes Kriterium)
