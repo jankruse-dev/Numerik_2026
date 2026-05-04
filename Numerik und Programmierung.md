@@ -98,6 +98,10 @@ Buch: Martin Hermann; Numerik und Programmierung
 Es gibt iterative und direkte Verfahren. Die direkten Verfahren stellen die analytischen Verfahren dar wie zum Beispiel der Gauß-Algorithmus. Die iterativen Verfahren werden häufiger in der Numerik verwendet.
 ## Gauß-Algorithmus am Computer
 Überführung der Matrix A in die Dreiecksmatrizen LR erfolgt durch schrittweises Multiplizieren mit einer [**Frobenius-Matrix**](https://de.wikipedia.org/wiki/Frobeniusmatrix) 
+Eine Matrix ist eine Frobeniusmatrix, wenn sie die folgenden drei Eigenschaften aufweist:
+- auf der [Hauptdiagonale](https://de.wikipedia.org/wiki/Hauptdiagonale "Hauptdiagonale") stehen nur Einsen
+- in höchstens einer Spalte stehen unter der Hauptdiagonale beliebige Einträge
+- alle anderen Einträge sind Null
 <img src="Images/Gauß.png" alt="Beschreibung" width="60%">
 - $n$ stellt hier die Dimension der Matrix dar. Wenn ich eine 3x3 habe ist $n=3$ 
 - Liste für $i$ = ```[1, 2]```
@@ -187,4 +191,72 @@ for k in range(n): # k = 2
 
 
 ```
+## QR-Zerlegung
+### Anforderungen
+- Matrix muss regulär sein $\rightarrow$ $det \neq 0$ 
+- Keine anderen Anforderungen, deshalb immer nutzbar als einziges direktes Verfahren
+### Rechenvorschrift 
+<img src="Images/Gram-Schmidt-Verfahren.png" alt="Beschreibung" width="60%">
+$\|u_1\|$ $\rightarrow$  Euklidische Norm gibt die geometrische Länge des Vektors an 
+$\|u_1\| = \sqrt{x^2 + y² + z^2}$ 
+### Beispielrechnung
+$$
+A = \begin{pmatrix} 2 & 1 & 3 \\ -1 & -4 & 1 \\ 1 & 2 & -4 \end{pmatrix}
+$$
+**1 Einteilung der Matrix $A$ in einzelne Spalten**
+Die Matrix $A$ wird in ihre Spaltenvektoren zerlegt:
+ $a_1 = \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix}$   $a_2 = \begin{pmatrix} 1 \\ -4 \\ 2 \end{pmatrix}$  $a_3 = \begin{pmatrix} 3 \\ 1 \\ -4 \end{pmatrix}$
 
+---
+
+**2 Orthogonale Projektion und Normierung**
+**Berechnung für $k=1$:**
+* **Orthogonaler Vektor**: Da $k-1 = 0$, gibt es keine Summe: $u_1 = a_1 = \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix}$
+* **Normierung**: $q_1 = \frac{u_1}{\|u_1\|}$
+  * $\|u_1\| = \sqrt{2^2 + (-1)^2 + 1^2} = \sqrt{6}$
+  * **Ergebnis**: $q_1 = \frac{1}{\sqrt{6}} \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix}$
+
+**Berechnung für $k=2$:**
+* **Orthogonale Projektion**: $u_2 = a_2 - \langle a_2, q_1 \rangle q_1$
+  * Skalarprodukt $\langle a_2, q_1 \rangle = \frac{1}{\sqrt{6}} (1\cdot2 + (-4)\cdot(-1) + 2\cdot1) = \frac{8}{\sqrt{6}}$
+  * $u_2 = \begin{pmatrix} 1 \\ -4 \\ 2 \end{pmatrix} - \frac{8}{\sqrt{6}} \cdot \frac{1}{\sqrt{6}} \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ -4 \\ 2 \end{pmatrix} - \frac{4}{3} \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix} = \begin{pmatrix} -5/3 \\ -8/3 \\ 2/3 \end{pmatrix}$
+* **Normierung**: $q_2 = \frac{u_2}{\|u_2\|}$
+  * $\|u_2\| = \sqrt{(-5/3)^2 + (-8/3)^2 + (2/3)^2} = \frac{\sqrt{93}}{3}$
+  * **Ergebnis**: $q_2 = \frac{1}{\sqrt{93}} \begin{pmatrix} -5 \\ -8 \\ 2 \end{pmatrix}$
+
+**Berechnung für $k=3$:**
+* **Orthogonale Projektion**: $u_3 = a_3 - \langle a_3, q_1 \rangle q_1 - \langle a_3, q_2 \rangle q_2$
+  * Skalarprodukt $\langle a_3, q_1 \rangle = \frac{1}{\sqrt{6}} (3\cdot2 + 1\cdot(-1) + (-4)\cdot1) = \frac{1}{\sqrt{6}}$
+  * Skalarprodukt $\langle a_3, q_2 \rangle = \frac{1}{\sqrt{93}} (3\cdot(-5) + 1\cdot(-8) + (-4)\cdot2) = \frac{-31}{\sqrt{93}}$
+  * $u_3 = \begin{pmatrix} 3 \\ 1 \\ -4 \end{pmatrix} - \frac{1}{6} \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix} + \frac{31}{93} \begin{pmatrix} -5 \\ -8 \\ 2 \end{pmatrix} = \begin{pmatrix} 1 \\ -3/2 \\ -7/2 \end{pmatrix}$
+* **Normierung**: $q_3 = \frac{u_3}{\|u_3\|}$
+  * $\|u_3\| = \sqrt{1^2 + (-1.5)^2 + (-3.5)^2} = \sqrt{15.5}$
+  * **Ergebnis**: $q_3 = \frac{1}{\sqrt{15.5}} \begin{pmatrix} 1 \\ -1.5 \\ -3.5 \end{pmatrix}$
+## Iterative Verfahren
+Man braucht zwar deutlich mehr Rechenschritte es gibt allerdings mehrere Vorteile:
+- Implementierung direkter Verfahren recht aufwändig
+- Matrizen häufig schwach besetzt, z.B. nur HD besetzt. Das kann bei der Berechnung der Inversen bei direkten Verfahren zu stark besetzten Matrizen führen, was bei großen LGS zu großen Speicherbedarf führen kann
+- Direkte Verfahren könne besondere Strukturen nicht berücksichtigen (z.B. Tridiagonalmatrix o.ä.)
+- Bessere Skalierbarkeit
+- Genauigkeit der Lösung kann besser beeinflusst werden
+- Einfachere Parallelisierung der Operationen
+### Splitting Verfahren
+> [!NOTE] Definition
+> Ausgehend von der Problemstellung $Ax=b$ heißt ein Iterationsverfahren linear, wenn Matrizen $M, N \in \mathbb{C}^{n \times n}$ existieren, welche die Gleichung $$
+> \phi(x,b) = Mx + Nb$$ erfüllen. Die Matrix M stellt in der Gleichung die Iterationsmatrix der Iteration $\phi$ dar.
+#### Konsistenz
+Konsistenz ist eine notwendige Bedingung bei der Anwendung iterativer Verfahren. Diese lässt sich über folgende Beziehung nachweisen:
+$$ M = I - NA $$Ein inkonsistentes Verfahren müsste durch den Nutzer manuell an der richtigen Stelle abgebrochen werden, weil sich das Verfahren nach der Annäherung an die richtige Lösung, wieder von ihr entfernen würde. Die Beurteilung, ob die richtige Lösung erreicht wurde, kann häufig jedoch gar nicht durch den Nutzer sichergestellt werden.
+#### Konvergenz 
+Ein lineares Iterationsverfahren ist dann konvergent, wenn der Spektralradius, der größte Eigenwert $(\rho(M))$, kleiner als 1 ist. Dies ist eine notwendige und hinreichende Bedingung für alle Splitting-Verfahren. Konvergent bedeutet, dass die Rechenvorschrift gegen einen Wert festen Wert läuft (gleichbedeutend dem Limes). Hintergrund ist, dass der Fehler in jeder Iteration mit seinem Eigenwert multipliziert wird. Ist nun der größte Eigenwert größer als 1 wird der Fehler im Laufe der Berechnung immer größer (Divergenz). Bei einem Spektralradius von 1 ändert sich der Ausgangsfehler nicht und es liegt weder Divergenz, noch Konvergenz vor. Nur wenn der Spektralradius kleiner als 1 ist verringert sich der Fehler mit jeder Iteration. Früher war die Berechnung der Eigenwerte aufwändig, weshalb man in der Regel einfachere hinreichende Kriterien formuliert hat.
+<img src="Images/Konvergenz.png" alt="Beschreibung" width="60%">
+### Aufbau Splitting Verfahren
+Diese basieren auf einer Aufteilung der Matrix. Diese Aufteilung erfolgt nach folgendem Muster $$ A = B + (A - B), B \in \mathbb{C}^{n \times n}$$ sodass sich $Ax=b$ zu $$ x = B^{-1}(B-A)x +B^{-1}b $$
+ergibt. So kann man $$ x_{m+1} = \phi(x_m, b) = Mx_m + Nb $$
+mit $$ M = B^{-1}(B-A)~\text{und}~N = B^{-1} $$ analog zu der charakteristischen Gleichung für lineare Iterationsverfahren formulieren.
+## Jacobi Verfahren
+- setzt auf nicht verschwindene Diagonalelemente
+- Matrix $A$ wird durch $A = D + ( A-D)$  ersetzt
+- Einsetzen in charakteristische Gleichung liefert $x_{m+1} = D^{-1}(D-A)x_m+D^{-1}b$  
+- $m$ entspicht dem Iterationsschritt 
+Daraus ergibt sich eine allgemeine Berechnungsvorschrift: $$ x_{m+1,i} = \frac{1}{a_{ii}} (b_i - \sum_{j=1, j\neq i}^n a_{ij}x_{m,j}) $$
