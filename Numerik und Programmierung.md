@@ -205,9 +205,7 @@ A = \begin{pmatrix} 2 & 1 & 3 \\ -1 & -4 & 1 \\ 1 & 2 & -4 \end{pmatrix}
 $$
 **1 Einteilung der Matrix $A$ in einzelne Spalten**
 Die Matrix $A$ wird in ihre Spaltenvektoren zerlegt:
- $a_1 = \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix}$   $a_2 = \begin{pmatrix} 1 \\ -4 \\ 2 \end{pmatrix}$  $a_3 = \begin{pmatrix} 3 \\ 1 \\ -4 \end{pmatrix}$
-
----
+ $a_1 = \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix}$   $a_2 = \begin{pmatrix} 1 \\ -4 \\ 2 \end{pmatrix}$  $a_3 = \begin{pmatrix} 3 \\ 1 \\ -4 \end{pmatrix}$ 
 
 **2 Orthogonale Projektion und Normierung**
 **Berechnung für $k=1$:**
@@ -260,3 +258,13 @@ mit $$ M = B^{-1}(B-A)~\text{und}~N = B^{-1} $$ analog zu der charakteristischen
 - Einsetzen in charakteristische Gleichung liefert $x_{m+1} = D^{-1}(D-A)x_m+D^{-1}b$  
 - $m$ entspicht dem Iterationsschritt 
 Daraus ergibt sich eine allgemeine Berechnungsvorschrift: $$ x_{m+1,i} = \frac{1}{a_{ii}} (b_i - \sum_{j=1, j\neq i}^n a_{ij}x_{m,j}) $$
+## Mehrgitterverfahren
+Man startet auf dem ersten Gitte und iteriert bis sich die hochfrequenten Fehler geglättet haben und springt dann auf ein gröberes Gitter mit vereinfachtem LGS. Dort können die hochfrequenten Fehler auch mit wenigen Iterationen geglättet werden.
+
+### Beispiel
+1. $$Ax_{new} = b$$             $$r_{new} = b - A_{new}$$
+2. $$ R~r_{new} \approx 0$$
+3. $$R~(b-Ax_{new}) \approx 0~~~~~x_{new} = x + \Delta x = x + P \Delta x'$$
+4. $$ R~(b-A~(x+P\Delta x')) \approx 0$$
+5. $$R~(b-Ax-AP\Delta x') \approx 0 \rightarrow R~(r-A\Delta x') \approx 0 \rightarrow Rr-RAP\Delta x' \approx 0$$
+6. $$A'\Delta x' \approx r'~~~\text{mit}~~~A' = RAP$$
