@@ -196,7 +196,7 @@ for matrix in A_dict.values():
 
 time_end_matrix = time.time()
 
-time_matrix = time_end_matrix - time_start_matrix
+time_matrix = int(time_end_matrix - time_start_matrix)
 
 min, sek = divmod(time_matrix, 60)
 print(f'Berechnung in Matrixschreibweise in {min:02d}:{sek:02d}')
@@ -212,7 +212,7 @@ for matrix in A_dict.values():
 
 time_end_index = time.time()
 
-time_index = time_end_index - time_start_index
+time_index = int(time_end_index - time_start_index)
 
 min, sek = divmod(time_index, 60)
 print(f'Berechnung in Matrixschreibweise in {min:02d}:{sek:02d}')
