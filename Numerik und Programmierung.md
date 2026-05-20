@@ -1,13 +1,21 @@
-### Literatur 
+# Literatur 
 - Bernd Klein: Einführung in Python
 - Bernd Klein: Numerisches Python
 - Woyand: Python für Ingenieure und Naturwissenschaftler
 - Martin Hermann: Numerische Mathematik 1
-### Klausur
+# Klausur
 30 % der Note durch Programmieraufgabe und Fachgespräch (10 min.)
 70 % der Note Klausur (Programmcode schreiben, Numerische Verfahren)
 Geschrieben im PC-Pool, programmieren in IDLE
 
+# Programmieraufgabe 
+<img src='Images/Programmieraufgabe.png' alt='Aufgabenstellung Numerik' width='75%'>
+## Teile der Aufgabe
+- Vergleich der beiden Gauß-Seidel-Verfahren (Matrix- und Komponentenschreibweise)
+- Laufzeitvergleich bei Matrizen mit unterschiedlichen Dimensionen
+- Funktionsparameter $\rightarrow$ Matrix $A$ und Vektoren $x_0$ und $b$ 
+	- optionaler Parameter $\rightarrow$ Genauigkeit mit default-Wert $1e^{-4}$ 
+- Testmatrix mit vorgegebener Funktion aus Ilias erstellen
 ### Zahlenformate
 In Computerprogrammen werden aufgrund der begrenzten Speicherlänge (8, 16, 32 bit) andere Zahlenformate definiert als in der Mathematik. Darunter:
 - Integer
@@ -258,6 +266,42 @@ mit $$ M = B^{-1}(B-A)~\text{und}~N = B^{-1} $$ analog zu der charakteristischen
 - Einsetzen in charakteristische Gleichung liefert $x_{m+1} = D^{-1}(D-A)x_m+D^{-1}b$  
 - $m$ entspicht dem Iterationsschritt 
 Daraus ergibt sich eine allgemeine Berechnungsvorschrift: $$ x_{m+1,i} = \frac{1}{a_{ii}} (b_i - \sum_{j=1, j\neq i}^n a_{ij}x_{m,j}) $$
+## Gauß-Seidel-Verfahren
+Dieses Verfahren basiert auf einer Zerlegung des LGS in eine Diagonalmatrix $D$, eine strikte linke untere Dreiecksmatrix $L$ sowie eine strikte rechte untere Dreiecksmatrix $R$. $$ A = L+D+R $$Strikt bedeutet hier, dass alle Elemente der Hauptdiagonale gleich Null sind. $$ \begin{gather}
+L = l_{ij}, \quad l_{ij} = \begin{cases} a_{ij}, & i > j \\ 0, & \text{sonst} \end{cases} \\
+\\
+R = r_{ij}, \quad r_{ij} = \begin{cases} a_{ij}, & i < j \\ 0, & \text{sonst} \end{cases} \\
+\\
+D = d_{ij}, \quad d_{ij} = \begin{cases} a_{ij}, & i = j \\ 0, & \text{sonst} \end{cases}
+\end{gather}$$
+Die Zerlegung des LGS liefert folgende Form des LGS: $$(L + D + R)x = b$$
+Dieses Gleichungssystem kann nun umgeformt werden, indem die Inverse von $(L+D+R)$ von links multipliziert wird. Das liefert: $$x=(L+D+R)^{-1}b$$
+Diese Form der Gleichung hat allerdings den Nachteil, dass hierzu die Inverse der Matrix $A$ bzw. die Inversen von $L,D,R$ berechnet werden müssen. Bei sehr großen LGS (z.B. $10^6\times10^6$) , wie sie in Simulationen häufig vorkommen, würde es ewig dauern die Inverse zu berechnen und man bräuchte sehr viel RAM für die Berechnung. Deshalb versucht man bei iterativen Verfahren das Problem in kleinere Rechnungen zu zerlegen. Deshalb wird folgende iterative Form der Gleichung bei Gauß-Seidel verwendet $$x_{m+1}=-(L+D)^{-1}Rx_m+(L+D)^{-1}b$$
+Diese Gleichung stellt die Matrizenform des Verfahrens dar. Es ist auch möglich das Verfahren in Indexschreibweise zu formulieren$$ x_{m+1,i} = \frac{1}{a_{ii}}\left( b_i-\sum^{i-1}_{j=1}a_{ij}x_{m+1,j} - \sum^n_{j=i+1}a_{ij}x_{m,j}\right)$$
+$m+1 \rightarrow$ Lösungsvektor für den nächsten Iterationsschritt
+$i \rightarrow$ Zeilenindex, bei einem Vektor mit drei Zeilen ist $i \in [1, 2, 3]$ 
+$j \rightarrow$ Spaltenindex 
+$\sum^{i-1}_{j=1} \rightarrow$ Summe, Start bei $j=1$ bis zu $i-1$ 
+
+Hierbei kann man sagen, dass sich die linke Summe wie die Berechnung von Skalarprodukten behandeln lässt. Da durch die Vorschrift immer das Skalarprodukt aus den einzelnen Zeilen (bzw. Spaltenvektoren) mit der Lösungsmatrix aus dem aktuellen sowie dem Iterationsschritt berechnet wird kann in Python mit dem ```np.dot``` Funktion gearbeitet werden. Der Zusammenhang ist in der untenstehenden Darstellung verdeutlicht. Hier steht **Grün** für die linke Summe und **Rot** steht für die rechte Summe.
+<img src='Images/Summen_Gauß_Seidel.png' alt='Summen Gauss Seidel' width='65%'>
+
+### Ablauf Indexschreibweise
+Beispiel LGS: $$ \begin{pmatrix} 4 & 1 \\ 1 & 3 \end{pmatrix} \cdot \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 5 \\ 4 \end{pmatrix} $$
+1. Der Zeilenvektor $x$ wird als Startwert zu einem Nullvektor gesetzt
+```python
+import numpy as np
+
+x_0 = np.zeros(2)
+print(x_0)
+```
+2. Erster Iterationsschritt: $i=1,\quad j=1$  $$a_{11} = 4, \quad b_1 = 5$$ Der erste Summenteil fällt raus, weil es noch keinen vorherigen Iterationsschritt gibt. Der zweite Summenteil wird zu: $$ \left(a_{12}*x_2 \right) $$
+3. Das erste $x_{m+1}$ wird also zu: $$ \frac{1}{4} (5-1\cdot0) = 1.25$$
+4. Zweiter Iterationsschritt: $i=1, \quad j=2$ 
+	1. Erster Summenteil:$$ (a_{1}) $$
+
+
+
 ## Mehrgitterverfahren
 Man startet auf dem ersten Gitte und iteriert bis sich die hochfrequenten Fehler geglättet haben und springt dann auf ein gröberes Gitter mit vereinfachtem LGS. Dort können die hochfrequenten Fehler auch mit wenigen Iterationen geglättet werden.
 
@@ -268,3 +312,132 @@ Man startet auf dem ersten Gitte und iteriert bis sich die hochfrequenten Fehler
 4. $$ R~(b-A~(x+P\Delta x')) \approx 0$$
 5. $$R~(b-Ax-AP\Delta x') \approx 0 \rightarrow R~(r-A\Delta x') \approx 0 \rightarrow Rr-RAP\Delta x' \approx 0$$
 6. $$A'\Delta x' \approx r'~~~\text{mit}~~~A' = RAP$$
+## Unterraumverfahren
+### Conjugate-Gradient Methode
+
+Das CG-Verfahren löst lineare Gleichungssysteme der Form $Ax = b$, wenn die Matrix $A$ symmetrisch und positiv definit ist.
+#### Allgemeine Formeln
+
+**Schritt 1: Initialisierung (Iteration $k = 0$)**
+
+1. **Initiales Residuum berechnen:**
+   $$r_0 = b - A x_0$$
+
+2. **Erste Suchrichtung festlegen:**
+   $$p_0 = r_0$$
+
+---
+
+**Schritt 2: Die Iterationsschleife (für $k = 0, 1, 2, \dots$)**
+
+Diese Schritte werden so lange wiederholt, bis das Residuum $r_k$ ausreichend klein ist (Konvergenz).
+
+1. **Schrittweite $\alpha_k$ berechnen:**
+   $$\alpha_k = \frac{r_k^T r_k}{p_k^T A p_k}$$
+
+2. **Lösungsvektor aktualisieren:**
+   $$x_{k+1} = x_k + \alpha_k p_k$$
+
+3. **Neues Residuum berechnen:**
+   $$r_{k+1} = r_k - \alpha_k A p_k$$
+
+4. **Abbruchkriterium prüfen:**
+   Wenn $\|r_{k+1}\|$ unter einer vorgegebenen Toleranz liegt $\rightarrow$ **Stopp**.
+
+5. **Korrekturfaktor $\beta_k$ berechnen:**
+   $$\beta_k = \frac{r_{k+1}^T r_{k+1}}{r_k^T r_k}$$
+
+6. **Neue Suchrichtung berechnen:**
+   $$p_{k+1} = r_{k+1} + \beta_k p_k$$
+
+---
+*Hinweis: Nach Schritt 6 wird $k$ um 1 erhöht ($k = k+1$) und die Schleife beginnt wieder bei Punkt 1.*
+
+#### Anwendungsbeispiel
+
+**Gegebene Werte:**
+$$A = \begin{pmatrix} 2 & 0 \\ 0 & 4 \end{pmatrix}, \quad b = \begin{pmatrix} 1 \\ -1 \end{pmatrix}, \quad x_0 = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$$
+--- 
+
+**Schritt 1: Initialisierung (Iteration 0)**
+
+Zuerst berechnen wir das erste Residuum $r_0$ (den Fehler) und die erste Suchrichtung $p_0$.
+
+1. **Residuum $r_0$ berechnen:**
+   $$r_0 = b - Ax_0 = \begin{pmatrix} 1 \\ -1 \end{pmatrix} - \begin{pmatrix} 2 & 0 \\ 0 & 4 \end{pmatrix} \begin{pmatrix} 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ -1 \end{pmatrix}$$
+
+2. **Erste Suchrichtung $p_0$ festlegen:**
+   Im ersten Schritt entspricht die Suchrichtung genau dem Residuum:
+   $$p_0 = r_0 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}$$
+
+---
+
+**Schritt 2: Erste Iteration (Berechnung von $x_1$)**
+
+Wir bestimmen die Schrittweite $\alpha_0$, aktualisieren den Lösungsvektor zu $x_1$ und berechnen das neue Residuum $r_1$.
+
+1. **Hilfskonstruktion $A p_0$ berechnen:**
+   $$A p_0 = \begin{pmatrix} 2 & 0 \\ 0 & 4 \end{pmatrix} \begin{pmatrix} 1 \\ -1 \end{pmatrix} = \begin{pmatrix} 2 \\ -4 \end{pmatrix}$$
+
+2. **Schrittweite $\alpha_0$ berechnen:**
+   Formel: $$\alpha_0 = \frac{r_0^T r_0}{p_0^T A p_0}$$
+   * Zähler: $r_0^T r_0 = 1 \cdot 1 + (-1) \cdot (-1) = 1 + 1 = 2$
+   * Nenner: $p_0^T A p_0 = \begin{pmatrix} 1 & -1 \end{pmatrix} \begin{pmatrix} 2 \\ -4 \end{pmatrix} = 1 \cdot 2 + (-1) \cdot (-4) = 2 + 4 = 6$
+   $$\alpha_0 = \frac{2}{6} = \frac{1}{3}$$
+
+3. **Neuen Lösungsvektor $x_1$ berechnen:**
+   $$x_1 = x_0 + \alpha_0 p_0 = \begin{pmatrix} 0 \\ 0 \end{pmatrix} + \frac{1}{3} \begin{pmatrix} 1 \\ -1 \end{pmatrix} = \begin{pmatrix} \frac{1}{3} \\ -\frac{1}{3} \end{pmatrix}$$
+
+4. **Neues Residuum $r_1$ berechnen:**
+   $$r_1 = r_0 - \alpha_0 A p_0 = \begin{pmatrix} 1 \\ -1 \end{pmatrix} - \frac{1}{3} \begin{pmatrix} 2 \\ -4 \end{pmatrix} = \begin{pmatrix} 1 - \frac{2}{3} \\ -1 + \frac{4}{3} \end{pmatrix} = \begin{pmatrix} \frac{1}{3} \\ \frac{1}{3} \end{pmatrix}$$
+
+---
+
+**Schritt 3: Vorbereitung für die nächste Iteration (Suchrichtung $p_1$)**
+
+Da $r_1 \neq 0$, bestimmen wir eine neue, zu $p_0$ konjugierte Suchrichtung $p_1$.
+
+1. **Korrekturfaktor $\beta_0$ berechnen:**
+   Formel: $$\beta_0 = \frac{r_1^T r_1}{r_0^T r_0}$$
+   * Zähler: $r_1^T r_1 = \frac{1}{3} \cdot \frac{1}{3} + \frac{1}{3} \cdot \frac{1}{3} = \frac{1}{9} + \frac{1}{9} = \frac{2}{9}$ $\rightarrow$ $\begin{pmatrix} 1/3 & 1/3 \end{pmatrix} \cdot \begin{pmatrix} 1/3 \\ 1/3 \end{pmatrix}$  
+   * Nenner: $r_0^T r_0 = 2$
+   $$\beta_0 = \frac{\frac{2}{9}}{2} = \frac{1}{9}$$
+
+2. **Neue Suchrichtung $p_1$ berechnen:**
+   $$p_1 = r_1 + \beta_0 p_0 = \begin{pmatrix} \frac{1}{3} \\ \frac{1}{3} \end{pmatrix} + \frac{1}{9} \begin{pmatrix} 1 \\ -1 \end{pmatrix} = \begin{pmatrix} \frac{3}{9} + \frac{1}{9} \\ \frac{3}{9} - \frac{1}{9} \end{pmatrix} = \begin{pmatrix} \frac{4}{9} \\ \frac{2}{9} \end{pmatrix}$$
+
+---
+
+**Zwischenstand nach der ersten Iteration:**
+* **Aktuelle Näherung:** $x_1 = \begin{pmatrix} \frac{1}{3} \\ -\frac{1}{3} \end{pmatrix}$
+* **Nächste Suchrichtung:** $p_1 = \begin{pmatrix} \frac{4}{9} \\ \frac{2}{9} \end{pmatrix}$
+
+---
+
+1. **Hilfskonstruktion $A p_1$ berechnen:**
+   $$A p_1 = \begin{pmatrix} 2 & 0 \\ 0 & 4 \end{pmatrix} \begin{pmatrix} \frac{4}{9} \\ \frac{2}{9} \end{pmatrix} = \begin{pmatrix} 2 \cdot \frac{4}{9} \\ 4 \cdot \frac{2}{9} \end{pmatrix} = \begin{pmatrix} \frac{8}{9} \\ \frac{8}{9} \end{pmatrix}$$
+
+2. **Schrittweite $\alpha_1$ berechnen:**
+   Formel: $$\alpha_1 = \frac{r_1^T r_1}{p_1^T A p_1}$$
+   * Zähler (haben wir schon aus Schritt 3): $r_1^T r_1 = \frac{2}{9}$
+   * Nenner: $p_1^T A p_1 = \begin{pmatrix} \frac{4}{9} & \frac{2}{9} \end{pmatrix} \begin{pmatrix} \frac{8}{9} \\ \frac{8}{9} \end{pmatrix} = \frac{4}{9} \cdot \frac{8}{9} + \frac{2}{9} \cdot \frac{8}{9} = \frac{32}{81} + \frac{16}{81} = \frac{48}{81} = \frac{16}{27}$
+   $$\alpha_1 = \frac{\frac{2}{9}}{\frac{16}{27}} = \frac{2}{9} \cdot \frac{27}{16} = \frac{3}{8}$$
+
+3. **Lösungsvektor $x_2$ berechnen:**
+   $$x_2 = x_1 + \alpha_1 p_1 = \begin{pmatrix} \frac{1}{3} \\ -\frac{1}{3} \end{pmatrix} + \frac{3}{8} \begin{pmatrix} \frac{4}{9} \\ \frac{2}{9} \end{pmatrix} = \begin{pmatrix} \frac{1}{3} \\ -\frac{1}{3} \end{pmatrix} + \begin{pmatrix} \frac{12}{72} \\ \frac{6}{72} \end{pmatrix} = \begin{pmatrix} \frac{1}{3} \\ -\frac{1}{3} \end{pmatrix} + \begin{pmatrix} \frac{1}{6} \\ \frac{1}{12} \end{pmatrix}$$
+   
+   Auf den Hauptnenner gebracht:
+   $$x_2 = \begin{pmatrix} \frac{4}{12} + \frac{2}{12} \\ -\frac{4}{12} + \frac{1}{12} \end{pmatrix} = \begin{pmatrix} \frac{6}{12} \\ -\frac{3}{12} \end{pmatrix} = \begin{pmatrix} \frac{1}{2} \\ -\frac{1}{4} \end{pmatrix}$$
+
+4. **Neues Residuum $r_2$ berechnen:**
+   $$r_2 = r_1 - \alpha_1 A p_1 = \begin{pmatrix} \frac{1}{3} \\ \frac{1}{3} \end{pmatrix} - \frac{3}{8} \begin{pmatrix} \frac{8}{9} \\ \frac{8}{9} \end{pmatrix} = \begin{pmatrix} \frac{1}{3} \\ \frac{1}{3} \end{pmatrix} - \begin{pmatrix} \frac{24}{72} \\ \frac{24}{72} \end{pmatrix} = \begin{pmatrix} \frac{1}{3} \\ \frac{1}{3} \end{pmatrix} - \begin{pmatrix} \frac{1}{3} \\ \frac{1}{3} \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$$
+
+---
+
+## Ergebnis
+Das Residuum $r_2$ ist exakt $\begin{pmatrix} 0 \\ 0 \end{pmatrix}$. Das Verfahren bricht hier ab, und wir haben die exakte Lösung des Gleichungssystems gefunden:
+$$x_{final} = \begin{pmatrix} 0.5 \\ -0.25 \end{pmatrix}$$
+
+*(Gegenprobe: $A \cdot x_{final} = \begin{pmatrix} 2 & 0 \\ 0 & 4 \end{pmatrix} \begin{pmatrix} 0.5 \\ -0.25 \end{pmatrix} = \begin{pmatrix} 1 \\ -1 \end{pmatrix} = b \checkmark$)*
+
+ 
