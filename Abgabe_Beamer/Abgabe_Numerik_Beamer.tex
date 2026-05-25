@@ -1,0 +1,183 @@
+\documentclass{beamer}
+\usepackage{Vorlage/Präsentation_Vorlage}
+\setlength{\parskip}{1.0em}         %Absatz zwischen Paragraphen
+
+
+
+\begin{document}
+
+% Standard
+\maketitlepage 
+
+\section{Konvergenzprüfung}
+
+\begin{frame}
+\small{
+\begin{block}{\textbf{Spektralradius $\rho(\mathrm{M})$}}
+  Größter Eigenwert < 1 \\
+  \textbf{Problem:} Eigenwerte berechnen zu rechenintensiv
+\end{block}
+
+\begin{block}{\textbf{Diagonaldominanz}}
+  Zeilensummenkriterium berechen:
+  $$ \sum_{i=1,i \neq j}^n \frac{\lvert a_{ij}\rvert}{\lvert a_{ii}\rvert} < 1$$
+  Summen können schnell berechnet werden und die positive Definitheit bestätigt werden
+\end{block}
+
+\begin{block}{\textbf{Symmetrie}}
+  Symmetrie wird bestätigt durch: $$ A = A^T$$
+\end{block}
+}
+\end{frame}
+
+% \begin{frame}[fragile]
+%     \frametitle{Mein Quellcode}
+    
+%     \begin{lstlisting}
+%     def beispiel():
+%         print("Hallo LaTeX!")
+%     \end{lstlisting}
+    
+% \end{frame}
+
+
+\section{Matrizen-Schreibweise}
+
+\begin{frame}
+
+\begin{itemize}
+  \item Gauß-Seidel-Verfahren sogenanntes Splitting-Verfahren
+  \item Ausgangsmatrix $A$ wird in kleinere Probleme zerlegt
+\end{itemize}
+\begin{figure}
+      \centering
+      \includegraphics[width=\textwidth]{LDR_Zerlegung.png}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+
+\begin{block}{\textbf{Rechenvorschrift im Code:}}
+  \begin{lstlisting}
+  # Inverse berechnen
+  inverse = np.linalg.inv(D + L)
+
+  while r >= accuracy:
+        # Gauss-Seidel-Verfahren
+        x_m_new = -inverse @ R @ x_m + inverse @ b
+        # Berechung des Residuums 
+        r = np.linalg.norm(b - A @ x_m_new) 
+        # Alten Iterationschritt ueberschreiben
+        x_m = x_m_new
+  \end{lstlisting}
+  $$x_{m+1}=-(L+D)^{-1}Rx_m+(L+D)^{-1}b$$
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+  \centering
+\includegraphics[width=0.8\textwidth]{runtime_matrix.pdf}
+\caption{Laufzeiten bei Matrixschreibweise}
+\end{figure}
+\end{frame}
+
+\section{Index-Schreibweise}
+
+\begin{frame}
+\begin{block}{\textbf{Summenlogik}}
+\begin{figure}
+\includegraphics[width=0.85\textwidth]{Summen_Gauß_Seidel.png}
+\end{figure}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{block}{\textbf{Summenlogik}}
+  \begin{itemize}
+    \item Ein Summenausdruck kann als Skalarprodukt interpretiert werden 
+    \item Da die Vektoren immer zusammenhängen kann mit Slicing gearbeitet werden
+  \end{itemize}
+  \begin{lstlisting}
+  import numpy as np
+
+  x[i] = (b[i] - 
+  np.dot(A[i, :i], x[:i]) - 
+  np.dot(A[i, i+1:], x[i+1:])) / A[i, i]
+  \end{lstlisting}
+  In der Summe der aktuellen Iteration muss nicht \texttt{i-1} geschrieben werden $\rightarrow$ bei \texttt{:i} ist das \texttt{i} exklusiv \\
+  Anstelle von \texttt{np.dot} hätte auch @ verwendet werden können
+\end{block}
+\end{frame}
+
+\section{Abbruchkriterium}
+
+\begin{frame}[fragile]
+  \begin{itemize}
+  \item Abbruchkriterium durch Genauigkeit bestimmt
+  \item Genaugkeit wird als Funktionsparameter übergeben
+  \end{itemize}
+
+  \begin{lstlisting}
+  def gauss_solver_index(A, b, x_0, accuracy:int = 1e-4)
+  \end{lstlisting}
+
+  \begin{itemize}
+  \item \texttt{while}-Schleife läuft bis das Residuum $r$ die Genauigkeit unterschreitet
+  \item Probe durch Berechnung in jedem Schritt von $r$
+  \item Residuum wird durch den Betrag von $r$ ausgedrückt
+  \end{itemize}
+
+  \begin{lstlisting}
+  r = np.linalg.norm(b - A @ x)
+  \end{lstlisting}
+
+\end{frame}
+
+\section{Laufzeituntersuchung}
+
+\begin{frame}
+ \begin{itemize}
+ \item Bestimmung der Laufzeit über \texttt{time.time()}
+ \item Differenz aus Start- und Endzeit in Sekunden
+ \item Temporäres speichern in Dictionary, später als CSV
+ \item Plot in seperatem Skript, um nicht die Berechnung jedes mal ausführen zu müssen
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+  \centering
+\includegraphics[width=0.8\textwidth]{runtime_index.pdf}
+\caption{Laufzeiten Indexschreibweise}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+  \centering
+\includegraphics[width=0.8\textwidth]{runtime.pdf}
+\caption{Laufzeitenvergleich}
+\end{figure}
+\end{frame}
+
+\section{Fazit}
+
+\begin{frame}
+\begin{itemize}
+\item Indexschreibweise bei größeren Matrizen deutlich schneller
+\item Vorteile:
+\begin{itemize}
+\item Es muss keine Inverse berechnet werden
+\item Es wird in der for-Schleife jedes Element von $x$ sofort ersetzt
+\item Es müssen keine ganzen Matrizen im RAM gespeichert werden
+\end{itemize}
+
+\item Matrixschreibweise bei kleineren Matrizen bis $n=600$ maginal schneller
+
+\end{itemize}
+\end{frame}
+
+\end{document}

@@ -1,5 +1,9 @@
 import numpy as np 
+import pandas as pd
+from pathlib import Path
 import time 
+
+BASE_DIR = Path(__file__).resolve().parent
 
 # Erstellung einer Beispielmatrix anhand der vorgegebenen Code.py
 def gen_matrix(size):
@@ -160,13 +164,13 @@ def gauss_solver_index(A, b, x_0, accuracy:int = 1e-4):
     n = A.shape[0]
     # Schleife solange bis das Residuum kleiner gleich ist als die geforderte Genauigkeit
     while r >= accuracy:
-        for i in range(n): # Zeilenindex i 
+        for i in range(n): # Zeilenindex i
             # Summen entsprechen Skalarprodukten
             x[i] = ((b[i] - 
                     np.dot(A[i, :i], x[:i]) - # Summe der aktuellen Iteration
                     np.dot(A[i, i+1:], x[i+1:])) # Summe der letzten Iteration
                     / A[i, i])
-        
+
         # Iterationschritt erweitern
         m += 1
         # Berechung des Residuums 
@@ -178,44 +182,46 @@ def gauss_solver_index(A, b, x_0, accuracy:int = 1e-4):
              
     print(f'Ergebnis nach {m} Iterationsschritten')
     return x
-            
-#A_dict = check_konvergenz(A_dict)           
 
-A = A_dict['10'][0]
-b = A_dict['10'][1]
-x = A_dict['10'][2]
+runtime = {'sizes': sizes}
 
-# Laufzeit Matrixschreibweise
-time_start_matrix = time.time()
-
-for matrix in A_dict.values():
+# Laufzeiten Matrixschreibweise
+for size, matrix in A_dict.items():
+    time_start_matrix = time.time()
     A = matrix[0]
     b = matrix[1]
     x = matrix[2]
     x_solve = gauss_solver_matrix(A, b, x)
+    time_end_matrix = time.time()
+    time_matrix = time_end_matrix - time_start_matrix
+    try:
+        runtime['Matrix'].append(time_matrix)
+    except KeyError:
+        runtime['Matrix'] = [time_matrix]
 
-time_end_matrix = time.time()
-
-time_matrix = int(time_end_matrix - time_start_matrix)
-
-min, sek = divmod(time_matrix, 60)
-print(f'Berechnung in Matrixschreibweise in {min:02d}:{sek:02d}')
 
 # Laufzeit Indexschreibweise
-time_start_index = time.time()
-
-for matrix in A_dict.values():
+for size, matrix in A_dict.items():
+    time_start_index = time.time()
     A = matrix[0]
     b = matrix[1]
     x = matrix[2]
     x_solve = gauss_solver_index(A, b, x)
+    time_end_index = time.time()
+    time_index = time_end_index - time_start_index
+    try:
+        runtime['Index'].append(time_index)
+    except KeyError:
+        runtime['Index'] = [time_index]
 
-time_end_index = time.time()
+runtime_df = pd.DataFrame(runtime, index=None)
+runtime_df.to_csv(BASE_DIR / 'runtime.csv', sep=';')
 
-time_index = int(time_end_index - time_start_index)
 
-min, sek = divmod(time_index, 60)
-print(f'Berechnung in Matrixschreibweise in {min:02d}:{sek:02d}')
+
+
+
+
 
 
 

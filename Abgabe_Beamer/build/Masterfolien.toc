@@ -1,0 +1,5 @@
+\babel@toc {ngerman}{}\relax 
+\beamer@sectionintoc {2}{Einleitung}{3}{0}{1}
+\beamer@sectionintoc {3}{Overlay Specifications}{5}{0}{2}
+\beamer@sectionintoc {4}{Bilder einfügen}{9}{0}{3}
+\beamer@sectionintoc {5}{Kapiteltrenner}{10}{0}{4}

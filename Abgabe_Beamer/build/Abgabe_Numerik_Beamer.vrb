@@ -1,0 +1,19 @@
+\begin{itemize}
+  \item Abbruchkriterium durch Genauigkeit bestimmt
+  \item Genaugkeit wird als Funktionsparameter übergeben
+  \end{itemize}
+
+  \begin{lstlisting}
+  def gauss_solver_index(A, b, x_0, accuracy:int = 1e-4)
+  \end{lstlisting}
+
+  \begin{itemize}
+  \item \texttt{while}-Schleife läuft bis das Residuum $r$ die Genauigkeit unterschreitet
+  \item Probe durch Berechnung in jedem Schritt von $r$
+  \item Residuum wird durch den Betrag von $r$ ausgedrückt
+  \end{itemize}
+
+  \begin{lstlisting}
+  r = np.linalg.norm(b - A @ x)
+  \end{lstlisting}
+

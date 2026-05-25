@@ -1,0 +1,174 @@
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{color}
+\lstset{ %Globale Code-Einstellungen
+    language=Python, % z. B. Python, C++, Java
+    basicstyle=\ttfamily\scriptsize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    breaklines=true,
+    % numbers=left,
+    frame=single
+}
+\usepackage{siunitx}
+\sisetup{
+    locale = DE, % Einheiten als Bruch werden mit Slash geschrieben --> W/mK
+    range-phrase = {-}, % Trennzeichen bei SIrange --> 35-45 °C
+    range-units = single, % Bei SI range wird nur einmal eine Einheit platziert
+    group-separator = {\,}, % Abstand bei Tausender setzen --> 1 000
+    group-minimum-digits = 4, % Ab 4 Stellen wird ein Abstand gesetzt --> 1 234 567
+    per-mode = symbol, % Einheiten als Bruch werden mit Slash geschrieben --> W/mK
+    product-symbol = \times, % Multiplikationssymbol bei \qtyproduct --> \qtyproduct{1 x 2x 3}\,\si{meter}
+}
+\usepackage{hyperref}
+\usetikzlibrary{patterns} % Für die Schraffur unten
+\usepackage[absolute,overlay]{textpos} % Bilder absolut positionieren
+\usepackage[export]{adjustbox} % Inhalte der Kopfzeile horizontal zentrieren
+\usetheme{default}
+\graphicspath{{Vorlage/}{Bilder/}} % Pfad wo die Bilder von der .tex aus liegen
+\setbeamercolor{alerted text}{fg=fhblue} % Farbe für hervorgehobenen Text
+
+
+% Definition der FH Münster Farben
+\definecolor{fhblue}{RGB}{4, 20, 154}
+\definecolor{fhyellow}{RGB}{248, 212, 71}
+\definecolor{fhred}{RGB}{215, 46, 70}
+
+% Definition der Titelseite
+\newcommand{\gettitle}{Laufzeitvergleich Gauß-Seidel-Verfahren}
+\newcommand{\getauthor}{Jan Kruse}
+\newcommand{\getdate}{\today}
+
+% Bulletpoints für Aufzählungen
+\setbeamertemplate{itemize items}[circle] % Optionen: default, circle, square, ball
+
+\newcommand{\maketitlepage}[1][fhblue]{
+
+% \titlepage
+% \begin{textblock*}{5cm}(7.5cm,0.5cm) % {Breite}(X-Koordinate, Y-Koordinate)
+%     \includegraphics[width=5cm]{Vorlage/fhm_Logo_CMYK_17mm.pdf}
+% \end{textblock*}
+
+\begin{frame}[plain] % [plain] entfernt Kopf-/Fußzeile für das Deckblatt
+    
+    \begin{tikzpicture}[remember picture, overlay]
+    
+    % 1. Der untere, schraffierte Bereich
+    \fill[pattern=north east lines, pattern color=#1] 
+        ([xshift=0.4\paperwidth]current page.south west) rectangle ([yshift=0.55\paperheight]current page.south east);
+
+    % 2. Die diagonalen blauen Balken (Parallelogramme)
+    % Wir zeichnen sie von rechts oben nach unten
+    \foreach \x in {0, 2, 3.6, 5.4, 7.2, 9, 10.8} {
+        \fill[#1] 
+            ([xshift=\x cm]current page.north) -- ++(0.5,0) -- ++(-6,-0.6\paperheight) -- ++(-0.5,0) -- cycle;
+    }
+
+    % 3. Die weißen Trenner / Hintergrund für die Balken
+    % Wir legen eine weiße Fläche über die rechte Hälfte, um die linke sauber zu halten
+    \fill[white] (current page.north west) rectangle ([xshift=0.6\paperwidth]current page.south west);
+
+    % 4. Logo oben links
+    \node[anchor=north west] at ([xshift=0.5cm, yshift=0cm]current page.north west) {
+        \includegraphics[width=4cm]{fhm_Logo_CMYK_17mm.pdf} % Pfad anpassen!
+    };
+
+    \end{tikzpicture}
+
+    % Textplatzierung 
+    \begin{minipage}{0.40\paperwidth}
+        \raggedright % Schaltet auf Linksbündig um
+        \vspace{3em}
+        \Large\textbf{\gettitle}\\
+        \vspace{3.5cm} 
+        \normalsize\getauthor\\
+        \vspace{1em}
+        \small\getdate  
+    \end{minipage}
+
+\end{frame}
+}
+
+\newcommand{\makesectionpage}[2][fhblue]{
+    \begin{frame}[plain] % [plain] entfernt Kopf-/Fußzeile für das Deckblatt
+    
+    \begin{tikzpicture}[remember picture, overlay]
+    
+    % 1. Der untere, schraffierte Bereich
+    \fill[pattern=north east lines, pattern color=#1] 
+        ([xshift=0.4\paperwidth]current page.south west) rectangle ([yshift=0.55\paperheight]current page.south east);
+
+    % 2. Die diagonalen blauen Balken (Parallelogramme)
+    % Wir zeichnen sie von rechts oben nach unten
+    \foreach \x in {0, 2, 3.6, 5.4, 7.2, 9, 10.8} {
+        \fill[#1] 
+            ([xshift=\x cm]current page.north) -- ++(0.5,0) -- ++(-6,-0.6\paperheight) -- ++(-0.5,0) -- cycle;
+    }
+
+    % 3. Die weißen Trenner / Hintergrund für die Balken
+    % Wir legen eine weiße Fläche über die rechte Hälfte, um die linke sauber zu halten
+    \fill[white] (current page.north west) rectangle ([xshift=0.6\paperwidth]current page.south west);
+
+    % 4. Logo oben links
+    \node[anchor=north west] at ([xshift=0.5cm, yshift=0cm]current page.north west) {
+        \includegraphics[width=4cm]{fhm_Logo_CMYK_17mm.pdf} % Pfad anpassen!
+    };
+
+    \end{tikzpicture}
+
+    % Textplatzierung 
+    \begin{minipage}{0.40\paperwidth}
+        \raggedright % Schaltet auf Linksbündig um
+        \vspace{3em}
+        \Large\textbf{#2}\\
+        
+         
+    \end{minipage}
+
+\end{frame}
+}
+
+
+% Kopf- und Fußzeilen definieren
+\setbeamertemplate{headline}{
+    \vskip 5mm
+    \leavevmode
+    % ht steuert die Höhe der beamercolorbox
+    \begin{beamercolorbox}[wd=\paperwidth, ht=6ex, dp=2ex, leftskip=1cm, rightskip=1cm]{palette primary}
+        \vspace{1em}
+    \begin{minipage}{0.5\paperwidth}
+        \raggedright % rechtsbündig 
+        \Large\insertsection 
+    \end{minipage}
+    \begin{minipage}{0.5\paperwidth}
+        %\raggedleft % linksbündig einstellen
+        \hspace*{15mm}\includegraphics[height=0.9cm]{Vorlage/fhm_Logo_CMYK_17mm.pdf}
+    \end{minipage}%
+    \vskip -2ex % verschiebt Inhalt nach oben
+    \hrule
+  \end{beamercolorbox}
+}
+
+\setbeamertemplate{footline}{
+    \leavevmode%
+    \begin{beamercolorbox}[wd=\paperwidth, ht=4ex, dp=2ex, leftskip=1cm, rightskip=1cm]{palette primary}
+        \hrule % Falls du eine Linie ÜBER der Fußzeile möchtest
+        \vspace{2ex}
+        \begin{minipage}[c]{0.4\textwidth}
+            \raggedright
+            \getauthor % Beispiel: Name des Autors
+        \end{minipage}%
+        \hfill
+        \begin{minipage}[c]{0.4\textwidth}
+            \raggedleft
+            \insertframenumber{}  % Seitenzahlen
+        \end{minipage}
+    \end{beamercolorbox}
+}
+
+
+
