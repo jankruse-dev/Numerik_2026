@@ -6,13 +6,17 @@
 \usepackage{color}
 \lstset{ %Globale Code-Einstellungen
     language=Python, % z. B. Python, C++, Java
-    basicstyle=\ttfamily\scriptsize,
+    basicstyle=\ttfamily\Tiny,
     keywordstyle=\color{blue}\bfseries,
     commentstyle=\color{green!60!black},
     stringstyle=\color{red},
     breaklines=true,
     % numbers=left,
-    frame=single
+    frame=single,
+    framexleftmargin=0pt,
+    xleftmargin=0pt,       % Setzt den linken Rand des Rahmens exakt auf den Textrand
+    resetmargins=true
+    % columns=fixed           % Hält alle Zeichen sauber linksbündig untereinander
 }
 \usepackage{siunitx}
 \sisetup{

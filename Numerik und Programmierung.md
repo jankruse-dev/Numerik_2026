@@ -440,4 +440,83 @@ $$x_{final} = \begin{pmatrix} 0.5 \\ -0.25 \end{pmatrix}$$
 
 *(Gegenprobe: $A \cdot x_{final} = \begin{pmatrix} 2 & 0 \\ 0 & 4 \end{pmatrix} \begin{pmatrix} 0.5 \\ -0.25 \end{pmatrix} = \begin{pmatrix} 1 \\ -1 \end{pmatrix} = b \checkmark$)*
 
- 
+# Lineare Optimierung
+Es soll eine lineare Zielfunktion optimiert werden. Das kann, je nach Anwendung, eine Maximierung oder eine Minimierung sein. $$z = F(x_1, x_2) = a_1x_1 + a_2x_2 + b $$
+Achsenabschnitt $b$ steht für ein Offset, um die Funktion nach oben oder unten zu verschieben
+## Einführungsbeispiel
+> [!NOTE] Landwirtschaftlicher Betrieb
+>  - Tiere: max. 50 Kühe und 200 Schafe
+>  - Weideland: 18 ha $\rightarrow$ eine Kuh = 0.25 ha, ein Schaf = 0.05 ha
+>  - Zeit: 10 000 h $\rightarrow$ eine Kuh = 150 h, ein Schaf 25 h
+>  - Gewinn: eine Kuh = 1000 €, ein Schaf = 250 €
+> 
+> Maximiere den Gewinn des Betriebs durch geschickte Auswahl an Schafen und Kühen
+
+Zielfunktion könnte so aussehen: $$ z = f(x_1, x_2) = 1000 x_1 + 250 x_2$$
+Als Nebenbedingung gelten Ungleichungen: $$\begin{gather}
+\text{1. Weidefläche:} \quad 18 \ge 0.25~x_1, 0.05~x_2 \\
+\text{2. Arbeitsstunden:} \quad 10000 \ge 150~x_1 + 25~x_2 \\
+\text{3. Stallplätze:} \quad 50 \ge x_1 \\
+\text{4. Stallplätze:} \quad 200 \ge x_2
+\end{gather}$$ 
+Das kann in ein LGS geschrieben werden: $$ \begin{pmatrix} 18 \\ 50  \\ 200  \\ 10000  \end{pmatrix} \ge \begin{pmatrix} 0.25 & 0.05 \\ 1 & 0\\ 0 & 1 \\ 150 & 25\end{pmatrix} \cdot \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$$
+Aus den Ungleichungen können Gleichungen gemacht werden, indem man eine zusätzliche Variable definiert die den Rest zum Grenzwert auffängt.  Dieser Variable nennt man **Schlupfvariable**. Dann schreibt man das LGS in die sogenannte Normalform mit Gleichheitszeichen. Das bedeutet für die Zielfunktion aber auch, dass diese nun von sechs Variablen abhängig ist: $$ z = f(x_1, x_2, y_1, y_2, y_3, y_4) = 1000~x_1 + 250~x_2 + 0~y_1 + 0~y_2 + 0~y_3 + 0~y_4$$
+Die Schlufpvariablen erfüllen nur den Zweck die Gleichung mathematisch leichter lösbar zu machen. Sie bekommen den Koeffizienten 0, da sie für die Lösung für $x_1, x_2$ keine Rolle spielen. 
+Bei einer linearen Optimierung muss der Lösungsraum eine konvexe Form haben, sodass die Lösung sich immer nur darin bewegen muss. Wäre der Lösungsraum nicht konvex, müsste man aus dem Lösungsraum herausgehen und wieder hinein um die passende Lösung zu finden. Das gelingt aber nicht unbedingt.
+
+<img src='Images/Lösungsraum.png', alt='konvexer Lösungsraum' width='70%'>
+## Simplex Verfahren
+Zur Lösung mit dem Simplex Verfahren wird das dazugehörige Simplextableau aufgestellt: 
+<img src='Images/Tableau.png', alt='konvexer Lösungsraum' width='30%'>
+### Beispiel Simplex
+**Schritt 1:** $x_1, x_2 = 0$
+Pivotspalte = min($c_1, ... , c_n$)
+
+|                |       | Pivotspalte |       |       |      |
+| -------------- | :---: | :---------: | :---: | :---: | ---- |
+|                |       |    $x_1$    | $x_2$ |       |      |
+| **Pivotzeile** | $y_1$ |      1      |   0   |  50   | 50   |
+|                | $y_2$ |      0      |   1   |  200  | 0    |
+|                | $y_3$ |    0.25     | 0.05  |  18   | 72   |
+|                | $y_4$ |     150     |  25   | 10000 | 60.6 |
+|                |       |    -1000    | -250  |   0   |      |
+
+|                |       | Pivotspalte |       |      |     |
+| -------------- | :---: | :---------: | :---: | :--: | --- |
+|                |       |    $x_1$    | $x_2$ |      |     |
+| **Pivotzeile** | $y_1$ |      1      |   0   |  50  |     |
+|                | $y_2$ |      0      |   1   | 200  |     |
+|                | $y_3$ |    -0.25    | 0.05  | 5.5  |     |
+|                | $y_4$ |    -150     |  25   | 2500 |     |
+|                |       |    1000     | -250  | 1000 |     |
+**Schritt 2:**
+
+|                |       |       | Pivotspalte |       |     |
+| -------------- | :---: | :---: | :---------: | :---: | --- |
+|                |       | $y_1$ |    $x_2$    |       |     |
+|                | $x_1$ |   1   |      0      |  50   | 0   |
+|                | $y_2$ |   0   |      1      |  200  | 200 |
+|                | $y_3$ | -0.25 |    0.05     |  5.5  | 110 |
+| **Pivotzeile** | $y_4$ | -150  |     25      | 2500  | 100 |
+|                |       | 1000  |    -250     | 50000 |     |
+
+|                |       |       | Pivotspalte |       |     |
+| -------------- | :---: | :---: | :---------: | :---: | --- |
+|                |       | $y_1$ |    $y_4$    |       |     |
+|                | $x_1$ |   1   |      0      |  50   |     |
+|                | $y_2$ |   6   |    -0.04    |  100  |     |
+|                | $y_3$ | 0.05  |   -0.002    |  0.5  |     |
+| **Pivotzeile** | $x_2$ |  -6   |    0.04     |  100  |     |
+|                |       | -500  |     10      | 75000 |     |
+$a'_{11} = a_{11} -\frac{-6 \cdot 0}{0.04} = 1$ 
+
+**Schritt: 3**
+
+|                |       | Pivotspalte |       |     |       |
+| -------------- | :---: | :---------: | :---: | :-: | ----- |
+|                |       |    $y_3$    | $y_4$ |     |       |
+|                | $x_1$ |             |       |     | 50    |
+|                | $y_2$ |             |       |     | 16,6  |
+| **Pivotzeile** | $y_1$ |     20      |       |     | 10    |
+|                | $x_2$ |             |       |     | -16,6 |
+|                |       |             |       |     |       |

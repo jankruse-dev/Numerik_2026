@@ -1,19 +1,61 @@
-\begin{itemize}
-  \item Abbruchkriterium durch Genauigkeit bestimmt
-  \item Genaugkeit wird als Funktionsparameter übergeben
-  \end{itemize}
+\begin{columns}[T]
+  \begin{column}{0.48\textwidth}
+    \begin{block}{\small{Matrix}}
+      \begin{lstlisting}
+def gauss_solver_matrix(A, b, x_0,
+            accuracy: int = 1e-4):
+      \end{lstlisting}
+      \tiny{
+        \begin{itemize}
+          \item Genauigkeit wird als \texttt{default} übergeben
+          \item L, R, D mithife von \texttt{np.tril, np.triu, np.diag}
+        \end{itemize}
+        \begin{block}{\small{\textbf{while}-Schleife}}
 
-  \begin{lstlisting}
-  def gauss_solver_index(A, b, x_0, accuracy:int = 1e-4)
-  \end{lstlisting}
+          \begin{lstlisting}
+# Inverse berechnen
+inverse = np.linalg.inv(D + L)
 
-  \begin{itemize}
-  \item \texttt{while}-Schleife läuft bis das Residuum $r$ die Genauigkeit unterschreitet
-  \item Probe durch Berechnung in jedem Schritt von $r$
-  \item Residuum wird durch den Betrag von $r$ ausgedrückt
-  \end{itemize}
-
-  \begin{lstlisting}
-  r = np.linalg.norm(b - A @ x)
-  \end{lstlisting}
-
+while r >= accuracy:
+    # Gauss-Seidel-Verfahren
+    x_m_new = -inverse @ R @ x_m + inverse @ b
+    # Berechung des Residuums
+    r = np.linalg.norm(b - A @ x_m_new)
+    # Alten Iterationschritt ueberschreiben
+    x_m = x_m_new
+          \end{lstlisting}
+          \begin{itemize}
+            \item Abbruchkriterium entspricht Betrag des Residuums
+          \end{itemize}
+        \end{block}
+      }
+    \end{block}
+  \end{column}
+  \begin{column}{0.48\textwidth}
+    \begin{block}{\small{Komponenten}}
+      \tiny{
+      \begin{itemize}
+        \item Ein Summenausdruck kann als Skalarprodukt interpretiert werden
+        \item Da die Vektoren immer zusammenhängen kann mit Slicing gearbeitet werden
+      \end{itemize}
+      \begin{figure}
+      \centering
+      \includegraphics[width=\textwidth]{Summe.png}
+      \end{figure}
+      \begin{lstlisting}
+while r >= accuracy:
+    for i in range(n): # Zeilenindex i
+        # Summen entsprechen Skalarprodukten
+        x[i] = ((b[i] -
+                np.dot(A[i, :i], x[:i]) - # Summe der aktuellen Iteration
+                np.dot(A[i, i+1:], x[i+1:])) # Summe der letzten Iteration
+                / A[i, i])
+      \end{lstlisting}
+      \begin{itemize}
+      \item \texttt{:i} = $i-1$ $\rightarrow$ \texttt{i} exklusiv
+      \item Anstelle von \texttt{np.dot} hätte auch @ verwendet werden können
+      \end{itemize}
+      }
+    \end{block}
+  \end{column}
+\end{columns}

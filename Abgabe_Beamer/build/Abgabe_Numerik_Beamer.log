@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.7)  25 MAY 2026 11:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.7)  29 MAY 2026 20:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -906,38 +906,84 @@ LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inpu
  (/usr/local/texlive/2025/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mathkerncmss.
 )
-<Vorlage/fhm_Logo_CMYK_17mm.pdf, id=37, 364.48372pt x 96.73932pt>
+<Vorlage/fhm_Logo_CMYK_17mm.pdf, id=21, 364.48372pt x 96.73932pt>
 File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
 <use Vorlage/fhm_Logo_CMYK_17mm.pdf>
 Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 7.
 (pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
 File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
 <use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 11.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 11.
-(pdftex.def)             Requested size: 113.81102pt x 30.20734pt.
-
-
-[1
-
-{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./Vorlage/fhm_Logo_CMYK_17mm.pdf>]
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 31.
+Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 62.
 (pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
 
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 31--31
+Overfull \hbox (60.03636pt too wide) in paragraph at lines 62--62
  [] $[]$ $[]$  
+ []
+
+\openout4 = `Abgabe_Numerik_Beamer.vrb'.
+
+File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
+<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
+Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 123.
+(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
+
+Overfull \hbox (60.03636pt too wide) in paragraph at lines 123--123
+ [] $[]$ $[]$  
+ []
+
+(build/Abgabe_Numerik_Beamer.vrb
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <4> not available
+(Font)              size <5> substituted on input line 4.
+
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <4> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 5.
+
+LaTeX Font Warning: Font shape `T1/cmtt/m/n' in size <4> not available
+(Font)              size <5> substituted on input line 5.
+
+<Bilder/Summe.png, id=24, 1163.34625pt x 197.73875pt>
+File: Bilder/Summe.png Graphic file (type png)
+<use Bilder/Summe.png>
+Package pdftex.def Info: Bilder/Summe.png  used on input line 43.
+(pdftex.def)             Requested size: 147.49782pt x 25.0703pt.
+)
+
+File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
+<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
+Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 123.
+(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
+
+Overfull \hbox (60.03636pt too wide) has occurred while \output is active
+ [] $[]$ $[]$  
+ []
+
+[1{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+
+ <./Vorlage/fhm_Logo_CMYK_17mm.pdf> <./Bilder/Summe.png>]
+File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
+<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
+Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 142.
+(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
+
+Overfull \hbox (60.03636pt too wide) in paragraph at lines 142--142
+ [] $[]$ $[]$  
+ []
+
+<Bilder/runtime.pdf, id=84, 422.39493pt x 313.35455pt>
+File: Bilder/runtime.pdf Graphic file (type pdf)
+<use Bilder/runtime.pdf>
+Package pdftex.def Info: Bilder/runtime.pdf  used on input line 142.
+(pdftex.def)             Requested size: 245.83282pt x 182.37213pt.
+
+Overfull \vbox (3.35233pt too high) detected at line 142
  []
 
 
 
 File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
 <use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 31.
+Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 142.
 (pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
 
 Overfull \hbox (60.03636pt too wide) has occurred while \output is active
@@ -946,310 +992,7 @@ Overfull \hbox (60.03636pt too wide) has occurred while \output is active
 
 [2
 
-]
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 57.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 57--57
- [] $[]$ $[]$  
- []
-
-<Bilder/LDR_Zerlegung.png, id=136, 1024.82875pt x 504.88625pt>
-File: Bilder/LDR_Zerlegung.png Graphic file (type png)
-<use Bilder/LDR_Zerlegung.png>
-Package pdftex.def Info: Bilder/LDR_Zerlegung.png  used on input line 57.
-(pdftex.def)             Requested size: 307.28987pt x 151.3823pt.
-
-
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 57.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) has occurred while \output is active
- [] $[]$ $[]$  
- []
-
-[3
-
- <./Bilder/LDR_Zerlegung.png>]
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 61.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 61--61
- [] $[]$ $[]$  
- []
-
-\openout4 = `Abgabe_Numerik_Beamer.vrb'.
-
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 77.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 77--77
- [] $[]$ $[]$  
- []
-
-(build/Abgabe_Numerik_Beamer.vrb
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <8> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 7.
-)
-
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 77.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) has occurred while \output is active
- [] $[]$ $[]$  
- []
-
-[4
-
-]
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 85.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 85--85
- [] $[]$ $[]$  
- []
-
-<Bilder/runtime_matrix.pdf, id=199, 412.81226pt x 312.02145pt>
-File: Bilder/runtime_matrix.pdf Graphic file (type pdf)
-<use Bilder/runtime_matrix.pdf>
-Package pdftex.def Info: Bilder/runtime_matrix.pdf  used on input line 85.
-(pdftex.def)             Requested size: 245.83282pt x 185.81454pt.
-
-Overfull \vbox (6.79474pt too high) detected at line 85
- []
-
-
-
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 85.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) has occurred while \output is active
- [] $[]$ $[]$  
- []
-
-[5
-
- <./Bilder/runtime_matrix.pdf>]
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 95.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 95--95
- [] $[]$ $[]$  
- []
-
-<Bilder/Summen_Gauß_Seidel.png, id=264, 1642.135pt x 1170.3725pt>
-File: Bilder/Summen_Gauß_Seidel.png Graphic file (type png)
-<use Bilder/Summen_Gauß_Seidel.png>
-Package pdftex.def Info: Bilder/Summen_Gauß_Seidel.png  used on input line 95.
-(pdftex.def)             Requested size: 261.19826pt x 186.1562pt.
-
-
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 95.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) has occurred while \output is active
- [] $[]$ $[]$  
- []
-
-[6
-
- <./Bilder/Summen_Gauß_Seidel.png>]
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 98.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 98--98
- [] $[]$ $[]$  
- []
-
-\openout4 = `Abgabe_Numerik_Beamer.vrb'.
-
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 113.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 113--113
- [] $[]$ $[]$  
- []
-
-(build/Abgabe_Numerik_Beamer.vrb)
-
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 113.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) has occurred while \output is active
- [] $[]$ $[]$  
- []
-
-[7
-
-]
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 118.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 118--118
- [] $[]$ $[]$  
- []
-
-\openout4 = `Abgabe_Numerik_Beamer.vrb'.
-
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 137.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 137--137
- [] $[]$ $[]$  
- []
-
-(build/Abgabe_Numerik_Beamer.vrb)
-
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 137.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) has occurred while \output is active
- [] $[]$ $[]$  
- []
-
-[8
-
-]
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 148.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 148--148
- [] $[]$ $[]$  
- []
-
-
-
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 148.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) has occurred while \output is active
- [] $[]$ $[]$  
- []
-
-[9
-
-]
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 156.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 156--156
- [] $[]$ $[]$  
- []
-
-<Bilder/runtime_index.pdf, id=380, 409.62848pt x 312.02145pt>
-File: Bilder/runtime_index.pdf Graphic file (type pdf)
-<use Bilder/runtime_index.pdf>
-Package pdftex.def Info: Bilder/runtime_index.pdf  used on input line 156.
-(pdftex.def)             Requested size: 245.83282pt x 187.2524pt.
-
-Overfull \vbox (8.23259pt too high) detected at line 156
- []
-
-
-
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 156.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) has occurred while \output is active
- [] $[]$ $[]$  
- []
-
-[10
-
- <./Bilder/runtime_index.pdf>]
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 164.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 164--164
- [] $[]$ $[]$  
- []
-
-<Bilder/runtime.pdf, id=447, 422.39493pt x 313.35455pt>
-File: Bilder/runtime.pdf Graphic file (type pdf)
-<use Bilder/runtime.pdf>
-Package pdftex.def Info: Bilder/runtime.pdf  used on input line 164.
-(pdftex.def)             Requested size: 245.83282pt x 182.37213pt.
-
-Overfull \vbox (3.35233pt too high) detected at line 164
- []
-
-
-
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 164.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) has occurred while \output is active
- [] $[]$ $[]$  
- []
-
-[11
-
  <./Bilder/runtime.pdf>]
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 181.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) in paragraph at lines 181--181
- [] $[]$ $[]$  
- []
-
-
-
-File: Vorlage/fhm_Logo_CMYK_17mm.pdf Graphic file (type pdf)
-<use Vorlage/fhm_Logo_CMYK_17mm.pdf>
-Package pdftex.def Info: Vorlage/fhm_Logo_CMYK_17mm.pdf  used on input line 181.
-(pdftex.def)             Requested size: 96.47649pt x 25.6073pt.
-
-Overfull \hbox (60.03636pt too wide) has occurred while \output is active
- [] $[]$ $[]$  
- []
-
-[12
-
-]
 \tf@nav=\write6
 \openout6 = `Abgabe_Numerik_Beamer.nav'.
 
@@ -1264,22 +1007,27 @@ Overfull \hbox (60.03636pt too wide) has occurred while \output is active
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.0pt have occurred.
+
 Package rerunfilecheck Info: File `Abgabe_Numerik_Beamer.out' has not changed.
-(rerunfilecheck)             Checksum: 37000339A0C7AAA1EFDC0DBE4B844E0A;746.
+(rerunfilecheck)             Checksum: 64916DE9F8A0269F3AEADD296B242F87;251.
  ) 
 Here is how much of TeX's memory you used:
- 33088 strings out of 473190
- 683431 string characters out of 5715800
- 1177180 words of memory out of 5000000
- 55702 multiletter control sequences out of 15000+600000
- 585947 words of font info for 100 fonts, out of 8000000 for 9000
+ 32864 strings out of 473190
+ 679129 string characters out of 5715800
+ 1396296 words of memory out of 5000000
+ 55526 multiletter control sequences out of 15000+600000
+ 569827 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,20n,123p,510b,1596s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on build/Abgabe_Numerik_Beamer.pdf (12 pages, 681836 bytes).
+ 128i,20n,123p,510b,2102s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
+Output written on build/Abgabe_Numerik_Beamer.pdf (2 pages, 467279 bytes).
 PDF statistics:
- 650 PDF objects out of 1000 (max. 8388607)
- 437 compressed objects within 5 object streams
- 31 named destinations out of 1000 (max. 500000)
- 125 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 187 PDF objects out of 1000 (max. 8388607)
+ 105 compressed objects within 2 object streams
+ 7 named destinations out of 1000 (max. 500000)
+ 74 words of extra memory for PDF output out of 10000 (max. 10000000)
 
