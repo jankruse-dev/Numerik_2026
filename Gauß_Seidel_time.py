@@ -61,7 +61,9 @@ def sum_krit(matrix):
     return True 
 
 # Liste mit den benötigten Matrizendimensionen
-sizes = [10, 100, 200, 400, 600, 800, 1000, 2000, 4000, 6000, 8000, 10000]
+sizes = [10]#, #100, 200, 400, 600, 800, 1000, 2000, 4000, 6000, 8000, 10000]
+
+#A_dict = {f'{size}':[gen_matrix(size)] for size in sizes} # alternativ
 
 # Dictionary mit den benötigten Matrizen in Form von {'size':[A, b]}
 A_dict = {}
@@ -72,6 +74,14 @@ for size in sizes:
     A_dict.setdefault(f'{size}', []).append(A) # A in Liste einsetzen (setdefault erstellt Liste)
     A_dict.setdefault(f'{size}', []).append(b) # A in Liste einsetzen (Liste wird erkannt)
     A_dict.setdefault(f'{size}', []).append(np.zeros(size, dtype=float)) # Startvektor x_0 als Nullvektor
+
+A = A_dict['10'][0]
+b = A_dict['10'][1]
+x = A_dict['10'][2]
+
+r = np.linalg.norm(b - A @ x)
+
+# print(r)
 
 
 def check_konvergenz(A_dict):
@@ -125,6 +135,7 @@ def gauss_solver_matrix(A, b, x_0, accuracy: int = 1e-4):
         x_m_new = -inverse @ R @ x_m + inverse @ b
         # Berechung des Residuums 
         r = np.linalg.norm(b - A @ x_m_new) 
+        print(r)
         # Alten Iterationschritt überschreiben
         x_m = x_m_new
 
@@ -214,8 +225,8 @@ for size, matrix in A_dict.items():
     except KeyError:
         runtime['Index'] = [time_index]
 
-runtime_df = pd.DataFrame(runtime, index=None)
-runtime_df.to_csv(BASE_DIR / 'runtime.csv', sep=';')
+# runtime_df = pd.DataFrame(runtime, index=None)
+# runtime_df.to_csv(BASE_DIR / 'runtime.csv', sep=';')
 
 
 
